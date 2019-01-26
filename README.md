@@ -1,1 +1,1 @@
-# Unity/Assets/OBJImport/Samples/ObjFromFile
+场景路径： Unity/Assets/OBJImport/Samples/ObjFromFile
