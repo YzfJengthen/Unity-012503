@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ObjFromFile : MonoBehaviour
 {
-    public String path = @"C:\Users\vive_1\Desktop\zf\mesh";
-    public String[] files;
-    public String[] mtls;
+    public string Path;
+    public string[] Files;
+    public string[] Mtls;
     public OBJLoader loadedObj = new OBJLoader();
     public OBJLoader loadedObj1 = new OBJLoader();
     public int i=0;
@@ -16,34 +16,40 @@ public class ObjFromFile : MonoBehaviour
     void Start()
     {
 
+        
+        Path = @"C:\Users\vive_1\Desktop\zf\mesh";
         temp = new GameObject();
-        files = Directory.GetFiles(path, "*.obj");
-        mtls = Directory.GetFiles(path, "*.mtl");
-
+        Files = Directory.GetFiles(Path, "*.obj");
+        Mtls = Directory.GetFiles(Path, "*.mtl");
+        //System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+        //sw.Start();
+        //temp = loadedObj.Load(Files[0], Mtls[0]);
+        //sw.Stop();
+        //TimeSpan ts2 = sw.Elapsed;
+        //Debug.Log(ts2.TotalSeconds);
+        //temp.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 
-   
+
     void Update()
     {
-
-        if (i < files.Length && i > 0)
+        if (i < Files.Length && i > 0)
         {
             Destroy(temp);
-            Destroy(loadedObj.Load(files[i-1], mtls[i-1]));
-            temp = loadedObj.Load(files[i], mtls[i]);
-            temp.transform.localScale = new Vector3(-0.1f, 0.1f, 0.1f);
+
+            temp = loadedObj.Load(Files[i], Mtls[i]);
+            temp.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         }
         else if (i == 0)
         {
-            temp = loadedObj.Load(files[i], mtls[i]);
-            temp.transform.localScale = new Vector3(-0.1f, 0.1f, 0.1f);
+            temp = loadedObj.Load(Files[i], Mtls[i]);
+            temp.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         }
-        else if (i == files.Length)
+        else if (i == Files.Length)
         {
             i = 0;
         }
         i++;
     }
-
-
+    
 }
